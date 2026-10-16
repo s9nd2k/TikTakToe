@@ -42,31 +42,28 @@ function App() {
     setIsDark(!isDark);
   };
 
-  if (screen === 'login') {
-    return (
-      <>
-        <Login onLogin={handleLogin} isDark={isDark} />
-        <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
-      </>
-    );
-  }
-
-  if (!username) return null;
-
   return (
     <div className={`min-h-screen ${isDark ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-50 to-indigo-100'}`}>
       {/* Кнопка переключения темы */}
       <button
         onClick={toggleTheme}
-        className={`fixed top-4 right-4 z-50 w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all transform hover:scale-110 ${
-          isDark ? 'bg-yellow-400 text-gray-900' : 'bg-gray-800 text-yellow-400'
+        className={`fixed top-4 right-4 z-50 w-12 h-12 rounded-full flex items-center justify-center shadow-xl transition-all duration-500 transform hover:scale-110 hover:rotate-12 ${
+          isDark 
+            ? 'bg-gradient-to-br from-yellow-400 to-amber-500 text-gray-900 shadow-yellow-500/30' 
+            : 'bg-gradient-to-br from-indigo-600 to-purple-700 text-yellow-300 shadow-indigo-500/30'
         }`}
-        title={isDark ? 'Светлая тема' : 'Тёмная тема'}
+        title={isDark ? 'Светлая тема ☀️' : 'Тёмная тема 🌙'}
       >
-        {isDark ? '☀️' : '🌙'}
+        <span className="text-xl transition-transform duration-500">
+          {isDark ? '☀️' : '🌙'}
+        </span>
       </button>
 
-      {screen === 'game' && (
+      {screen === 'login' && (
+        <Login onLogin={handleLogin} isDark={isDark} />
+      )}
+
+      {screen === 'game' && username && (
         <Game
           username={username}
           isDark={isDark}
@@ -75,7 +72,7 @@ function App() {
         />
       )}
 
-      {screen === 'statistics' && (
+      {screen === 'statistics' && username && (
         <Statistics
           username={username}
           isDark={isDark}
@@ -83,20 +80,6 @@ function App() {
         />
       )}
     </div>
-  );
-}
-
-function ThemeToggle({ isDark, onToggle }: { isDark: boolean; onToggle: () => void }) {
-  return (
-    <button
-      onClick={onToggle}
-      className={`fixed top-4 right-4 z-50 w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all transform hover:scale-110 ${
-        isDark ? 'bg-yellow-400 text-gray-900' : 'bg-gray-800 text-yellow-400'
-      }`}
-      title={isDark ? 'Светлая тема' : 'Тёмная тема'}
-    >
-      {isDark ? '☀️' : '🌙'}
-    </button>
   );
 }
 
