@@ -43,18 +43,18 @@ function App() {
   };
 
   return (
-    <div className={`min-h-screen ${isDark ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-50 to-indigo-100'}`}>
+    <div className={`min-h-screen ${isDark ? 'bg-gray-900' : 'bg-gray-50'}`}>
       {/* Кнопка переключения темы */}
       <button
         onClick={toggleTheme}
-        className={`fixed top-4 right-4 z-50 w-12 h-12 rounded-full flex items-center justify-center shadow-xl transition-all duration-500 transform hover:scale-110 hover:rotate-12 ${
+        className={`fixed top-4 right-4 z-[100] w-14 h-14 rounded-2xl flex items-center justify-center shadow-2xl transition-all duration-500 transform hover:scale-110 hover:rotate-12 active:scale-95 group ${
           isDark 
-            ? 'bg-gradient-to-br from-yellow-400 to-amber-500 text-gray-900 shadow-yellow-500/30' 
-            : 'bg-gradient-to-br from-indigo-600 to-purple-700 text-yellow-300 shadow-indigo-500/30'
+            ? 'bg-gradient-to-br from-yellow-400 via-amber-400 to-orange-500 text-gray-900 shadow-yellow-500/40 hover:shadow-yellow-500/60' 
+            : 'bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-700 text-yellow-300 shadow-indigo-500/40 hover:shadow-indigo-500/60'
         }`}
-        title={isDark ? 'Светлая тема ☀️' : 'Тёмная тема 🌙'}
+        title={isDark ? '☀️ Светлая тема' : '🌙 Тёмная тема'}
       >
-        <span className="text-xl transition-transform duration-500">
+        <span className="text-2xl transition-transform duration-500 group-hover:rotate-180">
           {isDark ? '☀️' : '🌙'}
         </span>
       </button>
